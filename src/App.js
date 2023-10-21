@@ -4,7 +4,7 @@ import Layout from "./component/layout/layout"
 import AddTask from './component/addTask/AddTask';
 import Profile from './component/profile/profile';
 import Register from './component/register/register';
-import Login from "./component/login/Login"
+import Login from "./component/login/login"
 
 
 
