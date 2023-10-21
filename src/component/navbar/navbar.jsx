@@ -36,7 +36,7 @@ export default function Navbar() {
             >
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                <li className="nav-item">
-                  <Link className="nav-link " aria-current="page" to={"/profile"}>
+                  <Link className="nav-link " aria-current="page" to={""}>
                     Profile
                   </Link>
                 </li>

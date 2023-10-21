@@ -8,7 +8,7 @@ export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState("");
 
-  function register(values) {
+  function signup(values) {
    values.userName = values.name;
     delete values.name;
     setIsLoading(true);
@@ -66,13 +66,13 @@ export default function Register() {
     },
     validationSchema,
     onSubmit: (values) => {
-      register(values);
+      signup(values);
     },
   });
 
   return (
     <section className="vh-100" style={{ backgroundColor: "#eee" }}>
-      <div className="container h-100">
+      <div className="container h-100 my-5">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
             <div className="card text-black" style={{ borderRadius: 25 }}>

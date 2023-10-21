@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react';
-import { Footer } from '../footer/footer';
+import  Navbar  from '../navbar/navbar';
+import  Footer  from '../footer/footer';
 import { Outlet } from 'react-router-dom';
-import Navbar from './../navbar/navbar';
 
-export function Layout() {
+export default function Layout() {
     return (
         <>
             <Navbar />

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -6,13 +6,18 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import TokenContextProvider from './Context/tokenContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TokenContextProvider>
-    <App />
-    </TokenContextProvider>
+    <Provider store={store}>
+      <TokenContextProvider>
+        <App />
+      </TokenContextProvider>
+    </Provider >
   </React.StrictMode>
 );
 

@@ -10,15 +10,16 @@ export default function Login()  {
     const[apiError,setApiError] = useState("");
     let {setToken}= useContext(tokenContext);
 
-    function login(values) {
+    function signin(values) {
       setIsLoading(true);
       axios.post(`https://trelloapp.onrender.com/login`, values)
         .then((response) => {
           if (response.data && response.data.message === `welcome` && response.data.token) {
             localStorage.setItem("userToken", response.data.token);
+            console.log(response.data)
             setToken(response.data.token);
             setIsLoading(false);
-            navigate("/profile");
+            navigate("/");
           } else {
             setIsLoading(false);
             setApiError("Login failed. Please check your credentials.");
@@ -26,7 +27,7 @@ export default function Login()  {
         })
         .catch((err) => {
           if (err.response) {
-            setApiError(err.response.data.error);
+            setApiError(err.response.data.message);
           } else {
             setApiError("Network error. Please try again later.");
           }
@@ -47,7 +48,7 @@ export default function Login()  {
           password: "",
         },validationSchema,
         onSubmit: (values) => {
-            login(values)
+          signin(values)
         }
       });
       return (
