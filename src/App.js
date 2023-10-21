@@ -1,12 +1,11 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import { Layout } from "./component/layout/layout"
-import { Login } from "./component/login/login"
-import { Register } from './component/register/register';
+import { Layout } from "./component/layout/layout";
 import { AddTask } from './component/addTask/AddTask';
 import { Profile } from './component/profile/profile';
 import { Home } from './component/home/home';
-
+import Register from './component/register/register';
+import Login from './component/login/login';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +32,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router}>
-
+      
       </RouterProvider>
     </>
   );
