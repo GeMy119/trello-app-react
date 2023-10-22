@@ -13,11 +13,11 @@ import TokenContextProvider from './Context/tokenContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <TokenContextProvider>
+    <TokenContextProvider>
+      <Provider store={store}>
         <App />
-      </TokenContextProvider>
-    </Provider >
+      </Provider >
+    </TokenContextProvider>
   </React.StrictMode>
 );
 

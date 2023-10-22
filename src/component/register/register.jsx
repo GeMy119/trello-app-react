@@ -3,13 +3,17 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import GoogleLogin from "react-google-login";
 export default function Register() {
   let navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState("");
+  // const responseSuccessGoogle = (res) => {
+  //   console.log(res)
+  // }
 
   function signup(values) {
-   values.userName = values.name;
+    values.userName = values.name;
     delete values.name;
     setIsLoading(true);
     axios
@@ -23,7 +27,7 @@ export default function Register() {
           setIsLoading(false);
           navigate("/login");
         } else {
-          setApiError("Some error occurred");
+          setApiError(response.message);
           setIsLoading(false);
         }
       })
@@ -231,6 +235,15 @@ export default function Register() {
                             </>
                           )}
                         </button>
+                        {/* <div className="my-2">
+                          <GoogleLogin
+                            clientId="5410326615-troth5nmgkj605ncikksl35icf90vp0i.apps.googleusercontent.com"
+                            buttonText="Google"
+                            onSuccess={responseSuccessGoogle}
+                            onFailure={responseSuccessGoogle}
+                            cookiePolicy={'single_host_origin'}
+                          />
+                        </div> */}
                       </div>
                     </form>
                   </div>
