@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
 
 export default function TodoForm() {
   const [apiErr, setApiErr] = useState('');
@@ -15,6 +16,7 @@ export default function TodoForm() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
 
   async function addTask(values) {
     try {
@@ -22,7 +24,7 @@ export default function TodoForm() {
       const response = await axios.post('https://trelloapp.onrender.com/addTask', values, {
         headers: { authorization: `Bearer ${userToken}` },
       });
-
+      setIsLoading(true)
       if (response.data.message === 'task added successfully') {
         console.log('Task added successfully');
         setIsLoading(false)
@@ -31,9 +33,12 @@ export default function TodoForm() {
       if (err.response && err.response.data.error) {
         console.log(err.response.data.error.message);
         setApiErr(err.response.data.error.message);
+        setIsLoading(false)
+
       } else {
         console.log(err.message);
         setApiErr(err.message);
+        setIsLoading(false)
       }
     }
   }
@@ -54,6 +59,8 @@ export default function TodoForm() {
     }),
     onSubmit: async (values) => {
       await addTask(values);
+      setShow(false)
+      setIsLoading(false)
       // Reset the form or perform other actions after submitting
       formik.resetForm();
     },
@@ -88,13 +95,13 @@ export default function TodoForm() {
             </Form.Group>
             <Form.Group className="mb-3 mx-2" controlId="formBasicAge">
               <Form.Label>Description</Form.Label>
-              <Form.Control 
-              value={formik.values.age} 
-              onBlur={formik.handleBlur} 
-              onChange={formik.handleChange} 
-              name='des' 
-              type="text" 
-              placeholder="Description" />
+              <Form.Control
+                value={formik.values.age}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                name='des'
+                type="text"
+                placeholder="Description" />
               {formik.touched.des && formik.errors.des && (
                 <div className="alert alert-danger my-1">{formik.errors.des}</div>
               )}
