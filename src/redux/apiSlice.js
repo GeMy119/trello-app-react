@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
-import { useContext } from "react";
 // import React, { useState } from "react";
 export let getUserData = createAsyncThunk(`api/getUser`, async function (id) {
     let res = await axios.get(`https://trelloapp.onrender.com/getUser/${id}`)

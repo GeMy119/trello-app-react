@@ -68,12 +68,13 @@ export default function Profile() {
       updateUser(values)
     }
   })
-  useEffect(() => {
-  }, [userData])
-
+  
   useEffect(() => {
     dispatch(getUserData(decoded.id))
-  }, [])
+    console.log(userData)
+  }, [decoded.id,dispatch])
+  useEffect(() => {
+  }, [userData])
   return (
     <div className='bg-profile'>
       <div className="container">
